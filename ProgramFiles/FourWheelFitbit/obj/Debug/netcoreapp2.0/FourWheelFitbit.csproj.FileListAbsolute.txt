@@ -1,0 +1,11 @@
+c:\users\jacob\source\repos\FourWheelFitbit\FourWheelFitbit\bin\Debug\netcoreapp2.0\FourWheelFitbit.deps.json
+c:\users\jacob\source\repos\FourWheelFitbit\FourWheelFitbit\bin\Debug\netcoreapp2.0\FourWheelFitbit.runtimeconfig.json
+c:\users\jacob\source\repos\FourWheelFitbit\FourWheelFitbit\bin\Debug\netcoreapp2.0\FourWheelFitbit.runtimeconfig.dev.json
+c:\users\jacob\source\repos\FourWheelFitbit\FourWheelFitbit\bin\Debug\netcoreapp2.0\FourWheelFitbit.dll
+c:\users\jacob\source\repos\FourWheelFitbit\FourWheelFitbit\bin\Debug\netcoreapp2.0\FourWheelFitbit.pdb
+c:\users\jacob\source\repos\FourWheelFitbit\FourWheelFitbit\obj\Debug\netcoreapp2.0\FourWheelFitbit.csprojResolveAssemblyReference.cache
+c:\users\jacob\source\repos\FourWheelFitbit\FourWheelFitbit\obj\Debug\netcoreapp2.0\FourWheelFitbit.csproj.CoreCompileInputs.cache
+c:\users\jacob\source\repos\FourWheelFitbit\FourWheelFitbit\obj\Debug\netcoreapp2.0\FourWheelFitbit.AssemblyInfoInputs.cache
+c:\users\jacob\source\repos\FourWheelFitbit\FourWheelFitbit\obj\Debug\netcoreapp2.0\FourWheelFitbit.AssemblyInfo.cs
+c:\users\jacob\source\repos\FourWheelFitbit\FourWheelFitbit\obj\Debug\netcoreapp2.0\FourWheelFitbit.dll
+c:\users\jacob\source\repos\FourWheelFitbit\FourWheelFitbit\obj\Debug\netcoreapp2.0\FourWheelFitbit.pdb
