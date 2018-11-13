@@ -9,9 +9,35 @@ namespace FourWheelFitbit.Models
 {
     public class WheelchairData
     {
+        public DataTable wheelchairDataTable = new DataTable();
 
-        // Constructor for file upload based inputs
+        public WheelchairData(string inputString)
+        {
+            wheelchairDataTable.Columns.AddRange(new DataColumn[4] { new DataColumn("x", typeof(Double)),
+                new DataColumn("y", typeof(Double)),
+                new DataColumn("z", typeof(Double)),
+                new DataColumn("time",typeof(Double))
+            });
 
-        // Constructor for strings, used for phone applications
+            foreach (string row in inputString.Split('\n'))
+            {
+                if (!string.IsNullOrEmpty(row))
+                {
+                    wheelchairDataTable.Rows.Add();
+                    int i = 0;
+
+                    // Execute a loop over the columns.  
+                    foreach (string cell in row.Split(','))
+                    {
+                        var doubleCell = Convert.ToDouble(cell);
+                        wheelchairDataTable.Rows[wheelchairDataTable.Rows.Count - 1][i] = doubleCell;
+                        i++;
+                    }
+
+                    // Check to make sure all four columns are filled for each row
+                    if (i != 4) throw new Exception($"Input data did not match specified format {Environment.StackTrace}");
+                }
+            }
+        }
     }
 }

@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using System.Data;
+using FourWheelFitbit.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,25 +16,22 @@ namespace FourWheelFitbit.Controllers
     public class UploadController : Controller
     {
         [HttpPost("upload")]
-        public async Task<IActionResult> Post(IFormFile file)
+        public IActionResult Post(IFormFile file)
         {
             try
             {
-                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", file.FileName);
-                var stream = new FileStream(path, FileMode.Create);
+                string inputData;
 
-                await file.CopyToAsync(stream);
-                stream.Close();
-
-                if (System.IO.File.Exists(path))
+                using (StreamReader stream = new StreamReader(file.OpenReadStream()))
                 {
-                    System.IO.File.SetAttributes(path, FileAttributes.Normal);
-                    System.IO.File.Delete(path);
-
+                    inputData = stream.ReadToEnd();
                 }
+
+                DataTable inputDataTable = new WheelchairData(inputData).wheelchairDataTable;
+
                 return Ok(new { length = file.Length, name = file.FileName });
             }
-            catch
+            catch (Exception e)
             {
                 return BadRequest();
             }
