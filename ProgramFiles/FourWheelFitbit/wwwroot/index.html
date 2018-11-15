@@ -7,7 +7,7 @@
     <script type="text/javascript">
         //$.ajax({
         //    type: "POST",
-        //    url: "api/algorithm",
+        //    url: "api/application",
         //    data: "testtesttest",
         //    success: success
         //});
@@ -28,7 +28,7 @@
                 formdata.append('file', file.files[0]);
 
                 $.ajax({
-                    url: '/api/upload/upload',
+                    url: '/api/application/upload',
                     type: 'POST',
                     data: formdata,
                     contentType: false,
