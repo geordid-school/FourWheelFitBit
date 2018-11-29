@@ -1,0 +1,28 @@
+﻿body {
+    margin: auto;
+    width: 50%;
+}
+
+.center {
+    text-align: center;
+}
+
+#resultsTable {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#resultsTable thead {
+    color: white;
+    background-color: maroon;
+}
+
+#resultsTable td {
+    border: solid black 1px;
+    padding: 5px;
+    text-align: center;
+}
+
+#resultsTable tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
