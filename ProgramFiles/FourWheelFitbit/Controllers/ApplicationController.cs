@@ -22,16 +22,13 @@ namespace FourWheelFitbit.Controllers
         // This is the api for the Android App to upload the recorded wheelchair data to. Data will be a CSV string in the following format:
         // x-axis, y-axis, z-axis, timestamp;
         [HttpPost]
-        public DataTable Post(string inputData)
+        public List<ResultSet> Post(string inputData)
         {
             DataTable inputDataTable = new WheelchairData(inputData).wheelchairDataTable;
             // TODO this is not final code, this should all be cleaned up and the vars renamed
             WheelchairMovementAnalyzer algo = new WheelchairMovementAnalyzer();
 
-            //TODO GED - I don't really know why there are two post methods. After changing the type
-            //     from WheelchairMovementAnalyzer to ResultSet, it got angry and I muted it for later
-            //return algo.AnalyzeDataTable(inputDataTable);
-            return null;
+            return algo.AnalyzeDataTable(inputDataTable);
         }
 
         [HttpPost("upload")]
