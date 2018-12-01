@@ -31,3 +31,14 @@ C:/Users/Jacob/Documents/School/Software Engineering I/FourWheelFitBit/ProgramFi
 /Users/GeordiD/Documents/_Synced Docs/School/UCO/Software Engineering/FourWheelFitBit/ProgramFiles/FourWheelFitbit/bin/Debug/netcoreapp2.0/FourWheelFitbit.runtimeconfig.dev.json
 /Users/GeordiD/Documents/_Synced Docs/School/UCO/Software Engineering/FourWheelFitBit/ProgramFiles/FourWheelFitbit/bin/Debug/netcoreapp2.0/FourWheelFitbit.dll
 /Users/GeordiD/Documents/_Synced Docs/School/UCO/Software Engineering/FourWheelFitBit/ProgramFiles/FourWheelFitbit/bin/Debug/netcoreapp2.0/FourWheelFitbit.pdb
+D:\Docs\GitHub\FourWheelFitBit\ProgramFiles\FourWheelFitbit\bin\Debug\netcoreapp2.0\FourWheelFitbit.deps.json
+D:\Docs\GitHub\FourWheelFitBit\ProgramFiles\FourWheelFitbit\bin\Debug\netcoreapp2.0\FourWheelFitbit.runtimeconfig.json
+D:\Docs\GitHub\FourWheelFitBit\ProgramFiles\FourWheelFitbit\bin\Debug\netcoreapp2.0\FourWheelFitbit.runtimeconfig.dev.json
+D:\Docs\GitHub\FourWheelFitBit\ProgramFiles\FourWheelFitbit\bin\Debug\netcoreapp2.0\FourWheelFitbit.dll
+D:\Docs\GitHub\FourWheelFitBit\ProgramFiles\FourWheelFitbit\bin\Debug\netcoreapp2.0\FourWheelFitbit.pdb
+D:\Docs\GitHub\FourWheelFitBit\ProgramFiles\FourWheelFitbit\obj\Debug\netcoreapp2.0\FourWheelFitbit.csprojAssemblyReference.cache
+D:\Docs\GitHub\FourWheelFitBit\ProgramFiles\FourWheelFitbit\obj\Debug\netcoreapp2.0\FourWheelFitbit.csproj.CoreCompileInputs.cache
+D:\Docs\GitHub\FourWheelFitBit\ProgramFiles\FourWheelFitbit\obj\Debug\netcoreapp2.0\FourWheelFitbit.AssemblyInfoInputs.cache
+D:\Docs\GitHub\FourWheelFitBit\ProgramFiles\FourWheelFitbit\obj\Debug\netcoreapp2.0\FourWheelFitbit.AssemblyInfo.cs
+D:\Docs\GitHub\FourWheelFitBit\ProgramFiles\FourWheelFitbit\obj\Debug\netcoreapp2.0\FourWheelFitbit.dll
+D:\Docs\GitHub\FourWheelFitBit\ProgramFiles\FourWheelFitbit\obj\Debug\netcoreapp2.0\FourWheelFitbit.pdb
