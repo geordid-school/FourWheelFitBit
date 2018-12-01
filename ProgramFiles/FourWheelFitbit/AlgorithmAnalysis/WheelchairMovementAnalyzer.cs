@@ -10,42 +10,48 @@ namespace FourWheelFitbit.AlgorithmAnalysis
 {
     public class WheelchairMovementAnalyzer
     {
-        //Jon's code goes here
-        //for now it just returns bunk data so we can test the api
-        // This should return a string, the controller can JSONify it
+        public Int64 StillTime { get; set; }
+        public Int64 MoveTime { get; set; }
+
         public List<ResultSet> AnalyzeDataTable(DataTable wheelchairData)
         {
             wheelchairData.Columns.Add("Jerk", typeof(Double)); 
             wheelchairData.Columns.Add("State", typeof(string)); 
             wheelchairData.Columns.Add("Duration", typeof(Double));
-            Double x, px, y, py, z, pz, t, pt = 0;
+            Double xPosition;
+            Double previousXPosition;
+            Double yPosition;
+            Double previousYPosition;
+            Double zPosition;
+            Double previousZPosition;
+            Double time;
+            Double previousTime = 0;
             bool move = false;
             List<ResultSet> testResults = new List<ResultSet>();
-            Int64 moveTime = 0;
-            Int64 stillTime = 0;
-
+            MoveTime = 0;
+            StillTime = 0;
 
             for (int i = 1; i < wheelchairData.Rows.Count; i++)
             {
-                x = Convert.ToDouble(wheelchairData.Rows[i]["x"]);
-                px = Convert.ToDouble(wheelchairData.Rows[i - 1]["x"]);
-                y = Convert.ToDouble(wheelchairData.Rows[i]["y"]);
-                py = Convert.ToDouble(wheelchairData.Rows[i - 1]["y"]);
-                z = Convert.ToDouble(wheelchairData.Rows[i]["z"]);
-                pz = Convert.ToDouble(wheelchairData.Rows[i - 1]["z"]);
-                t = Convert.ToDouble(wheelchairData.Rows[i]["time"]);
-                pt = Convert.ToDouble(wheelchairData.Rows[i - 1]["time"]);
+                xPosition = Convert.ToDouble(wheelchairData.Rows[i]["x"]);
+                previousXPosition = Convert.ToDouble(wheelchairData.Rows[i - 1]["x"]);
+                yPosition = Convert.ToDouble(wheelchairData.Rows[i]["y"]);
+                previousYPosition = Convert.ToDouble(wheelchairData.Rows[i - 1]["y"]);
+                zPosition = Convert.ToDouble(wheelchairData.Rows[i]["z"]);
+                previousZPosition = Convert.ToDouble(wheelchairData.Rows[i - 1]["z"]);
+                time = Convert.ToDouble(wheelchairData.Rows[i]["time"]);
+                previousTime = Convert.ToDouble(wheelchairData.Rows[i - 1]["time"]);
 
-                wheelchairData.Rows[i]["Jerk"] = Math.Sqrt(((x - px) * (x - px)) + ((y - py) * (y - py)) + ((z - pz) * (z - pz)));
+                wheelchairData.Rows[i]["Jerk"] = Math.Sqrt(((xPosition - previousXPosition) * (xPosition - previousXPosition)) + ((yPosition - previousYPosition) * (yPosition - previousYPosition)) + ((zPosition - previousZPosition) * (zPosition - previousZPosition)));
                 wheelchairData.Rows[i]["State"] = (Convert.ToDouble(wheelchairData.Rows[i]["Jerk"]) > 0.2 ? "Moving" : "Still");
-                wheelchairData.Rows[i]["Duration"] = t - pt;
+                wheelchairData.Rows[i]["Duration"] = time - previousTime;
                 if (Convert.ToString(wheelchairData.Rows[i]["State"]) == "Moving")
                 {
-                    moveTime += Convert.ToInt64(wheelchairData.Rows[i]["Duration"]);
+                    MoveTime += Convert.ToInt64(wheelchairData.Rows[i]["Duration"]);
                 }
                 else
                 {
-                    stillTime += Convert.ToInt64(wheelchairData.Rows[i]["Duration"]);
+                    StillTime += Convert.ToInt64(wheelchairData.Rows[i]["Duration"]);
                 }
             }
 
