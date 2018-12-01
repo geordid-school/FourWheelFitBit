@@ -7,12 +7,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js" type="text/javascript"></script>   
     <script src="https://momentjs.com/downloads/moment.min.js" type="text/javascript"></script>
     <script type="text/javascript">
-//$.ajax({
-        //    type: "POST",
-        //    url: "api/application",
-        //    data: "testtesttest",
-        //    success: success
-        //});
+
 
         //Handlebars helpers
         Handlebars.registerHelper("formatTime", function(datetime, format) {
@@ -29,8 +24,14 @@
             compileHandlebars('resultsTemplate', 'resultsContainer', result);
             $('#resultsContainer').show();
             $('#uploadScreen').hide();
-            
+
             $('#updatepanelFile').addClass('alert-success').html('<strong>Success!</strong>').show();
+        }
+
+        function ResetPage() {
+            $('#uploadScreen').show();
+            $('#resultsContainer').hide();
+            $('#fileupload').val("");
         }
 
         $(function () {
@@ -58,11 +59,6 @@
                     }
                 })
             });
-
-            $('#btnRetry').on("click", function() {
-                $('#uploadScreen').show();
-                $('#resultsContainer').hide();
-            });
         });
     </script>
 
@@ -83,7 +79,7 @@
                 </tr>
             {{/each}}
         </table>
-        <button id="btnRetry">Try Again</button>
+        <button id="btnRetry" onclick="ResetPage()">Try Again</button>
     </script>
 
     <link rel="stylesheet" href="styles.css" type="text/css"/>
