@@ -18,6 +18,12 @@ namespace FourWheelFitbit.Controllers
     [Route("api/[controller]")]
     public class ApplicationController : Controller
     {
+        [Route("~/api/test")]
+        [HttpGet]
+        public string TestConnection() {
+            return "Connected to FourWheelFitBit: " + DateTime.Now.ToString();
+        }
+
         // POST api/<controller>
         // This is the api for the Android App to upload the recorded wheelchair data to. Data will be a CSV string in the following format:
         // x-axis, y-axis, z-axis, timestamp;
