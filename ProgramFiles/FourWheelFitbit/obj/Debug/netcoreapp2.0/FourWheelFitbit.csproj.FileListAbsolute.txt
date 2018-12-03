@@ -41,3 +41,4 @@ C:\Users\Jacob\Documents\School\Software Engineering I\FourWheelFitBit\ProgramFi
 C:\Users\Jacob\Documents\School\Software Engineering I\FourWheelFitBit\ProgramFiles\FourWheelFitbit\obj\Debug\netcoreapp2.0\FourWheelFitbit.AssemblyInfo.cs
 C:\Users\Jacob\Documents\School\Software Engineering I\FourWheelFitBit\ProgramFiles\FourWheelFitbit\obj\Debug\netcoreapp2.0\FourWheelFitbit.dll
 C:\Users\Jacob\Documents\School\Software Engineering I\FourWheelFitBit\ProgramFiles\FourWheelFitbit\obj\Debug\netcoreapp2.0\FourWheelFitbit.pdb
+C:\Users\Jacob\Documents\School\Software Engineering I\FourWheelFitBit\ProgramFiles\FourWheelFitbit\obj\Debug\netcoreapp2.0\FourWheelFitbit.csprojResolveAssemblyReference.cache

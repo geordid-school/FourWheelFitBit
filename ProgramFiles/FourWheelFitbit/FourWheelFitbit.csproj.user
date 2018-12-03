@@ -3,6 +3,7 @@
   <PropertyGroup>
     <ShowAllFiles>false</ShowAllFiles>
     <ActiveDebugProfile>FourWheelFitbit</ActiveDebugProfile>
+    <NameOfLastUsedPublishProfile>FourWheelFitbit - Web Deploy</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
