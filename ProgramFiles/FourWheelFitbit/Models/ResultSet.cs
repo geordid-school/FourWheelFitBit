@@ -3,12 +3,12 @@ namespace FourWheelFitbit.Models
 {
     public class ResultSet
     {
-        public DateTime StartTime
+        public Double StartTime
         {
             get; set;
         }
 
-        public DateTime EndTime
+        public Double EndTime
         {
             get; set;
         }
@@ -18,7 +18,7 @@ namespace FourWheelFitbit.Models
             get; set;
         }
 
-        public ResultSet(DateTime start, DateTime end, bool moving)
+        public ResultSet(Double start, Double end, bool moving)
         {
             StartTime = start;
             EndTime = end;

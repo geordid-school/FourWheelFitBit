@@ -62,14 +62,6 @@ namespace FourWheelFitbit.AlgorithmAnalysis
                         Convert.ToDouble(wheelchairData.Rows[i + 2]["Jerk"]) + Convert.ToDouble(wheelchairData.Rows[i + 1]["Jerk"])) / 10);
                     wheelchairData.Rows[i]["State"] = forwardAverage >= 0.15 ? 1 : 0;
 
-                    if (Convert.ToInt16(wheelchairData.Rows[i]["State"]) == 1)
-                    {
-                        MoveTime += Convert.ToInt64(wheelchairData.Rows[i]["Duration"]);
-                    }
-                    else
-                    {
-                        StillTime += Convert.ToInt64(wheelchairData.Rows[i]["Duration"]);
-                    }
                 }
 
                 for (int i = 11; i < wheelchairData.Rows.Count - 10; i++)
@@ -81,14 +73,6 @@ namespace FourWheelFitbit.AlgorithmAnalysis
                         Convert.ToDouble(wheelchairData.Rows[i + 4]["Jerk"]) + Convert.ToDouble(wheelchairData.Rows[i + 3]["Jerk"]) + Convert.ToDouble(wheelchairData.Rows[i + 2]["Jerk"]) + Convert.ToDouble(wheelchairData.Rows[i + 1]["Jerk"])) / 20);
                     wheelchairData.Rows[i]["State"] = movingAverage >= 0.15 ? 1 : 0;
 
-                    if (Convert.ToInt16(wheelchairData.Rows[i]["State"]) == 1)
-                    {
-                        MoveTime += Convert.ToInt64(wheelchairData.Rows[i]["Duration"]);
-                    }
-                    else
-                    {
-                        StillTime += Convert.ToInt64(wheelchairData.Rows[i]["Duration"]);
-                    }
                 }
 
                 for (int i = wheelchairData.Rows.Count - 10; i < wheelchairData.Rows.Count; i++)
@@ -98,37 +82,48 @@ namespace FourWheelFitbit.AlgorithmAnalysis
                         Convert.ToDouble(wheelchairData.Rows[i - 2]["Jerk"]) + Convert.ToDouble(wheelchairData.Rows[i - 1]["Jerk"])) / 10);
                     wheelchairData.Rows[i]["State"] = previousAverage >= 0.15 ? 1 : 0;
 
-                    if (Convert.ToInt16(wheelchairData.Rows[i]["State"]) == 1)
-                    {
-                        MoveTime += Convert.ToInt64(wheelchairData.Rows[i]["Duration"]);
-                    }
-                    else
-                    {
-                        StillTime += Convert.ToInt64(wheelchairData.Rows[i]["Duration"]);
-                    }
                 }
 
             }
 
-            DateTime start, end;
-            // Not sure if conversion is completly correct, possible timezone issue?
-            DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, 0).ToLocalTime();
-            start = epoch.AddMilliseconds(Convert.ToInt64(wheelchairData.Rows[0]["time"]));
+            Double start, end;
+
+            start = Convert.ToDouble(wheelchairData.Rows[0]["time"]);
             for (int i = 2; i < wheelchairData.Rows.Count; i++)
             {
                 if (Convert.ToInt16(wheelchairData.Rows[i]["State"]) != Convert.ToInt16(wheelchairData.Rows[i - 1]["State"]))
                 {
-                    end = epoch.AddMilliseconds(Convert.ToInt64(wheelchairData.Rows[i]["time"]));
-                    move = Convert.ToInt16(wheelchairData.Rows[i - 1]["State"]) == 1 ? true : false;
-                    testResults.Add(new ResultSet(start, end, move));
-                    start = epoch.AddMilliseconds(Convert.ToInt64(wheelchairData.Rows[i]["time"]));
+                    end = Convert.ToDouble(wheelchairData.Rows[i]["time"]);
+                    if(end - start >= 500)
+                    {
+                        move = Convert.ToInt16(wheelchairData.Rows[i - 1]["State"]) == 1 ? true : false;
+                        testResults.Add(new ResultSet(start, end, move));
+                        start = Convert.ToDouble(wheelchairData.Rows[i]["time"]);
+                        if(Convert.ToInt16(wheelchairData.Rows[i]["State"]) == 1)
+                        {
+                            MoveTime += Convert.ToInt64(end - start);
+                        }
+                        else
+                        {
+                            StillTime += Convert.ToInt64(end - start);
+                        }
+                    }
+
                 }
 
                 if (i == (wheelchairData.Rows.Count - 1) && Convert.ToInt16(wheelchairData.Rows[i]["State"]) == Convert.ToInt16(wheelchairData.Rows[i - 1]["State"]))
                 {
-                    end = epoch.AddMilliseconds(Convert.ToInt64(wheelchairData.Rows[i]["time"]));
+                    end = Convert.ToDouble(wheelchairData.Rows[i]["time"]);
                     move = Convert.ToInt16(wheelchairData.Rows[i]["State"]) == 1 ? true : false;
                     testResults.Add(new ResultSet(start, end, move));
+                    if (Convert.ToInt16(wheelchairData.Rows[i]["State"]) == 1)
+                    {
+                        MoveTime += Convert.ToInt64(end - start);
+                    }
+                    else
+                    {
+                        StillTime += Convert.ToInt64(end - start);
+                    }
                 }
             }
 
