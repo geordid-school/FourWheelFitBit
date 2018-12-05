@@ -87,16 +87,17 @@ namespace FourWheelFitbit.AlgorithmAnalysis
             }
 
             Double start, end;
+            int startIndex = 1;
 
             start = Convert.ToDouble(wheelchairData.Rows[0]["time"]);
             for (int i = 2; i < wheelchairData.Rows.Count; i++)
             {
-                if (Convert.ToInt16(wheelchairData.Rows[i]["State"]) != Convert.ToInt16(wheelchairData.Rows[i - 1]["State"]))
+                if (Convert.ToInt16(wheelchairData.Rows[i]["State"]) != Convert.ToInt16(wheelchairData.Rows[startIndex]["State"]))
                 {
                     end = Convert.ToDouble(wheelchairData.Rows[i]["time"]);
                     if(end - start >= 500)
                     {
-                        move = Convert.ToInt16(wheelchairData.Rows[i - 1]["State"]) == 1 ? true : false;
+                        move = Convert.ToInt16(wheelchairData.Rows[startIndex]["State"]) == 1 ? true : false;
                         testResults.Add(new ResultSet(start, end, move));
                         if(Convert.ToInt16(wheelchairData.Rows[i]["State"]) == 1)
                         {
@@ -107,11 +108,12 @@ namespace FourWheelFitbit.AlgorithmAnalysis
                             StillTime += Convert.ToInt64(end - start);
                         }
                         start = Convert.ToDouble(wheelchairData.Rows[i]["time"]);
+                        startIndex = i;
                     }
 
                 }
 
-                if (i == (wheelchairData.Rows.Count - 1) && Convert.ToInt16(wheelchairData.Rows[i]["State"]) == Convert.ToInt16(wheelchairData.Rows[i - 1]["State"]))
+                if (i == (wheelchairData.Rows.Count - 1) && Convert.ToInt16(wheelchairData.Rows[i]["State"]) == Convert.ToInt16(wheelchairData.Rows[startIndex]["State"]))
                 {
                     end = Convert.ToDouble(wheelchairData.Rows[i]["time"]);
                     move = Convert.ToInt16(wheelchairData.Rows[i]["State"]) == 1 ? true : false;
