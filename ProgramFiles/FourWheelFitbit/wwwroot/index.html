@@ -14,15 +14,31 @@
             return moment(datetime).format(format);
         });
 
+        Handlebars.registerHelper("duration", function(millis) {
+            let time = moment.duration(millis);
+            let output = "";
+
+            if(time.minutes() > 0) {
+                output += time.minutes() + "min ";
+            }
+
+            if(time.seconds() > 0) {
+                output += time.seconds() + "sec ";
+            } 
+
+            output += time.milliseconds() + "ms";
+
+            return output;
+        })
+
         function compileHandlebars(templateId, containerId, data){
             var template = Handlebars.compile($('#' + templateId).html());
             var compiledHtml = template(data);
             $('#' + containerId).html(compiledHtml);
         }
 
-        function success(result) {
-            console.log(result);
-            compileHandlebars('resultsTemplate', 'resultsContainer', result);
+        function success(data) {
+            compileHandlebars('resultsTemplate', 'resultsContainer', data);
             $('#resultsContainer').show();
             $('#uploadScreen').hide();
         }
@@ -60,23 +76,27 @@
             });
         });
     </script>
-
+    
     <script id="resultsTemplate" type="text/x-handlebars-template">
-        <div>Total Time Moving: {{moveTimeTotal}}</div>
-        <div>Total Time Stationary: {{stillTimeTotal}}</div>
+        <h2>Analysis Results:</h2>
+        <div>Total Time Moving: {{duration moveTimeTotal}}</div>
+        <div>Total Time Stationary: {{duration stillTimeTotal}}</div>
+        <br />
         <table id="resultsTable">
-            <thead>
+            {{#each results}}
                 <tr>
-                    <td>StartTime</td>
-                    <td>EndTime</td>
-                    <td>Is Moving?</td>
+                    <td colspan="3">{{formatTime startTime 'MM/DD/YYYY hh:mm:ss.SSS a'}}</td>
+                    <td></td>
                 </tr>
-            </thead>
-            {{#each this.results}}
                 <tr>
-                    <td>{{formatTime startTime 'MM/DD/YYYY hh:mm:ss a'}}</td>
-                    <td>{{formatTime endTime 'MM/DD/YYYY hh:mm:ss a'}}</td>
-                    <td>{{isMoving}}</td>
+                    <td></td>
+                    <td colspan="3">
+                        {{#if isMoving}}
+                            Moving
+                        {{else}}
+                            Stationary
+                        {{/if}}
+                    </td>
                 </tr>
             {{/each}}
         </table>
@@ -93,11 +113,10 @@
             (x, y, z, and timestamp) with each row being a new entry.
         </div>
         <br />
-        <br />
         <div class="row center">
             <div class="col-sm-12">
                 <div class="form-group">
-                    <div id="updatepanelFile" class="alert" role="alert" style="display:none"> </div>
+                    <div id="updatepanelFile" class="alert" role="alert" style="display: none"> </div>
                 </div>
                 <div class="form-group">
                     <input type="file" id="fileupload" /><br />
