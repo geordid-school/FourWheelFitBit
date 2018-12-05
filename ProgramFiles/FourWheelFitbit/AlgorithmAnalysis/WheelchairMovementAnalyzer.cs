@@ -98,7 +98,6 @@ namespace FourWheelFitbit.AlgorithmAnalysis
                     {
                         move = Convert.ToInt16(wheelchairData.Rows[i - 1]["State"]) == 1 ? true : false;
                         testResults.Add(new ResultSet(start, end, move));
-                        start = Convert.ToDouble(wheelchairData.Rows[i]["time"]);
                         if(Convert.ToInt16(wheelchairData.Rows[i]["State"]) == 1)
                         {
                             MoveTime += Convert.ToInt64(end - start);
@@ -107,6 +106,7 @@ namespace FourWheelFitbit.AlgorithmAnalysis
                         {
                             StillTime += Convert.ToInt64(end - start);
                         }
+                        start = Convert.ToDouble(wheelchairData.Rows[i]["time"]);
                     }
 
                 }
