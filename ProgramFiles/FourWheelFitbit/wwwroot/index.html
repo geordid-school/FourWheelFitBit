@@ -21,11 +21,10 @@
         }
 
         function success(result) {
+            console.log(result);
             compileHandlebars('resultsTemplate', 'resultsContainer', result);
             $('#resultsContainer').show();
             $('#uploadScreen').hide();
-
-            $('#updatepanelFile').addClass('alert-success').html('<strong>Success!</strong>').show();
         }
 
         function ResetPage() {
@@ -52,10 +51,10 @@
                     contentType: false,
                     processData: false,
                     success: function (d) {
-                        success(d.results);
+                        success(d);
                     },
-                    error: function () {
-                        $('#updatepanelFile').addClass('alert_error').html('<strong>Failed!</strong> Error in upload');
+                    error: function (response) {
+                        alert(response.responseText);
                     }
                 })
             });
@@ -63,6 +62,8 @@
     </script>
 
     <script id="resultsTemplate" type="text/x-handlebars-template">
+        <div>Total Time Moving: {{moveTimeTotal}}</div>
+        <div>Total Time Stationary: {{stillTimeTotal}}</div>
         <table id="resultsTable">
             <thead>
                 <tr>
@@ -71,7 +72,7 @@
                     <td>Is Moving?</td>
                 </tr>
             </thead>
-            {{#each this}}
+            {{#each this.results}}
                 <tr>
                     <td>{{formatTime startTime 'MM/DD/YYYY hh:mm:ss a'}}</td>
                     <td>{{formatTime endTime 'MM/DD/YYYY hh:mm:ss a'}}</td>
@@ -88,7 +89,7 @@
 <body>
     <div id="uploadScreen">
         <div>
-            Please upload sensor data using the uploader below.  Data should be organized into 4 columns
+            Upload sensor data .CSV using the uploader below. Data should be organized into 4 columns
             (x, y, z, and timestamp) with each row being a new entry.
         </div>
         <br />

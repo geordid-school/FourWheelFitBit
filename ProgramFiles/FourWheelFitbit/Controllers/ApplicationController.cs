@@ -41,7 +41,7 @@ namespace FourWheelFitbit.Controllers
             }
             catch
             {
-                return BadRequest();
+                return BadRequest("There was a problem analyzing your input. Please try again.");
             }
         }
 
@@ -50,8 +50,8 @@ namespace FourWheelFitbit.Controllers
         {
             var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
             //verify .csv file extension
-            if (!fileName.EndsWith(".csv")){
-                return BadRequest();
+            if (!fileName.ToLower().EndsWith(".csv")){
+                return BadRequest("There was a problem with your file extension. Please make sure that it is properly formatted a .csv file.");
             }
 
             try
@@ -74,7 +74,7 @@ namespace FourWheelFitbit.Controllers
             }
             catch
             {
-                return BadRequest();
+                return StatusCode(500, "There was a problem analyzing your file. Please make sure it is properly formatted and try again.");
             }
         }
     }
