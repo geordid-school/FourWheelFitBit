@@ -17,17 +17,13 @@
         Handlebars.registerHelper("duration", function(millis) {
             let time = moment.duration(millis);
             let output = "";
-
             if(time.minutes() > 0) {
                 output += time.minutes() + "min ";
             }
-
             if(time.seconds() > 0) {
                 output += time.seconds() + "sec ";
             } 
-
             output += time.milliseconds() + "ms";
-
             return output;
         })
 
@@ -37,8 +33,9 @@
             $('#' + containerId).html(compiledHtml);
         }
 
-        function success(data) {
-            compileHandlebars('resultsTemplate', 'resultsContainer', data);
+        function success(result) {
+            console.log(result);
+            compileHandlebars('resultsTemplate', 'resultsContainer', result);
             $('#resultsContainer').show();
             $('#uploadScreen').hide();
         }
@@ -76,27 +73,23 @@
             });
         });
     </script>
-    
+
     <script id="resultsTemplate" type="text/x-handlebars-template">
-        <h2>Analysis Results:</h2>
         <div>Total Time Moving: {{duration moveTimeTotal}}</div>
         <div>Total Time Stationary: {{duration stillTimeTotal}}</div>
-        <br />
         <table id="resultsTable">
-            {{#each results}}
+            <thead>
                 <tr>
-                    <td colspan="3">{{formatTime startTime 'MM/DD/YYYY hh:mm:ss.SSS a'}}</td>
-                    <td></td>
+                    <td>StartTime</td>
+                    <td>EndTime</td>
+                    <td>Is Moving?</td>
                 </tr>
+            </thead>
+            {{#each this.results}}
                 <tr>
-                    <td></td>
-                    <td colspan="3">
-                        {{#if isMoving}}
-                            Moving
-                        {{else}}
-                            Stationary
-                        {{/if}}
-                    </td>
+                    <td>{{formatTime startTime 'MM/DD/YYYY hh:mm:ss a'}}</td>
+                    <td>{{formatTime endTime 'MM/DD/YYYY hh:mm:ss a'}}</td>
+                    <td>{{isMoving}}</td>
                 </tr>
             {{/each}}
         </table>
@@ -112,6 +105,7 @@
             Upload sensor data .CSV using the uploader below. Data should be organized into 4 columns
             (x, y, z, and timestamp) with each row being a new entry.
         </div>
+        <br />
         <br />
         <div class="row center">
             <div class="col-sm-12">

@@ -1,7 +1,6 @@
 ﻿body {
     margin: auto;
     width: 50%;
-    padding: 10px;
 }
 
 .center {
@@ -10,12 +9,16 @@
 
 #resultsTable {
     border-collapse: collapse;
-    margin-left: auto;
-    margin-right: auto;
-    /*width: 100%;*/
+    width: 100%;
+}
+
+#resultsTable thead {
+    color: white;
+    background-color: maroon;
 }
 
 #resultsTable td {
+    border: solid black 1px;
     padding: 5px;
     text-align: center;
 }
