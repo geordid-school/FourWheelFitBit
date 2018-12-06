@@ -49,7 +49,7 @@ namespace FourWheelFitbit.Controllers
         public IActionResult Post(IFormFile file)
         {
             var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-            //verify .csv file extension
+            // verify .csv file extension
             if (!fileName.ToLower().EndsWith(".csv")){
                 return BadRequest("There was a problem with your file extension. Please make sure that it is properly formatted a .csv file.");
             }
@@ -65,7 +65,6 @@ namespace FourWheelFitbit.Controllers
 
                 DataTable inputDataTable = new WheelchairData(inputData).wheelchairDataTable;
                 // Run analyzer here and return the text to the view
-                // TODO this is nots final code, this should all be cleaned up and the vars renamed
                 WheelchairMovementAnalyzer algo = new WheelchairMovementAnalyzer();
                 List<ResultSet> result = algo.AnalyzeDataTable(inputDataTable);
                 Int64 moveTime = algo.MoveTime;

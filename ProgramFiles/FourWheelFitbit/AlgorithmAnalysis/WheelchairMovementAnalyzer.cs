@@ -31,7 +31,7 @@ namespace FourWheelFitbit.AlgorithmAnalysis
             MoveTime = 0;
             StillTime = 0;
 
-            for (int i = 1; i < wheelchairData.Rows.Count; i++)
+            for (var i = 1; i < wheelchairData.Rows.Count; i++)
             {
                 xPosition = Convert.ToDouble(wheelchairData.Rows[i]["x"]);
                 previousXPosition = Convert.ToDouble(wheelchairData.Rows[i - 1]["x"]);
@@ -55,7 +55,7 @@ namespace FourWheelFitbit.AlgorithmAnalysis
             // Need data set of at least 23 to use moving average
             if (wheelchairData.Rows.Count >= 23)
             {
-                for (int i = 1; i < 11; i++)
+                for (var i = 1; i < 11; i++)
                 {
                     forwardAverage = Convert.ToDouble((Convert.ToDouble(wheelchairData.Rows[i + 10]["Jerk"]) + Convert.ToDouble(wheelchairData.Rows[i + 9]["Jerk"]) + Convert.ToDouble(wheelchairData.Rows[i + 8]["Jerk"]) + Convert.ToDouble(wheelchairData.Rows[i + 7]["Jerk"]) +
                         Convert.ToDouble(wheelchairData.Rows[i + 6]["Jerk"]) + Convert.ToDouble(wheelchairData.Rows[i + 5]["Jerk"]) + Convert.ToDouble(wheelchairData.Rows[i + 4]["Jerk"]) + Convert.ToDouble(wheelchairData.Rows[i + 3]["Jerk"]) +
@@ -64,7 +64,7 @@ namespace FourWheelFitbit.AlgorithmAnalysis
 
                 }
 
-                for (int i = 11; i < wheelchairData.Rows.Count - 10; i++)
+                for (var i = 11; i < wheelchairData.Rows.Count - 10; i++)
                 {
                     movingAverage = Convert.ToDouble((Convert.ToDouble(wheelchairData.Rows[i - 10]["Jerk"]) + Convert.ToDouble(wheelchairData.Rows[i - 9]["Jerk"]) + Convert.ToDouble(wheelchairData.Rows[i - 8]["Jerk"]) + Convert.ToDouble(wheelchairData.Rows[i - 7]["Jerk"]) +
                         Convert.ToDouble(wheelchairData.Rows[i - 6]["Jerk"]) + Convert.ToDouble(wheelchairData.Rows[i - 5]["Jerk"]) + Convert.ToDouble(wheelchairData.Rows[i - 4]["Jerk"]) + Convert.ToDouble(wheelchairData.Rows[i - 3]["Jerk"]) +
@@ -75,7 +75,7 @@ namespace FourWheelFitbit.AlgorithmAnalysis
 
                 }
 
-                for (int i = wheelchairData.Rows.Count - 10; i < wheelchairData.Rows.Count; i++)
+                for (var i = wheelchairData.Rows.Count - 10; i < wheelchairData.Rows.Count; i++)
                 {
                     previousAverage = Convert.ToDouble((Convert.ToDouble(wheelchairData.Rows[i - 10]["Jerk"]) + Convert.ToDouble(wheelchairData.Rows[i - 9]["Jerk"]) + Convert.ToDouble(wheelchairData.Rows[i - 8]["Jerk"]) + Convert.ToDouble(wheelchairData.Rows[i - 7]["Jerk"]) +
                         Convert.ToDouble(wheelchairData.Rows[i - 6]["Jerk"]) + Convert.ToDouble(wheelchairData.Rows[i - 5]["Jerk"]) + Convert.ToDouble(wheelchairData.Rows[i - 4]["Jerk"]) + Convert.ToDouble(wheelchairData.Rows[i - 3]["Jerk"]) +
@@ -86,11 +86,12 @@ namespace FourWheelFitbit.AlgorithmAnalysis
 
             }
 
-            Double start, end;
+            double start;
+            double end;
             int startIndex = 1;
 
             start = Convert.ToDouble(wheelchairData.Rows[0]["time"]);
-            for (int i = 2; i < wheelchairData.Rows.Count; i++)
+            for (var i = 2; i < wheelchairData.Rows.Count; i++)
             {
                 if (Convert.ToInt16(wheelchairData.Rows[i]["State"]) != Convert.ToInt16(wheelchairData.Rows[startIndex]["State"]))
                 {
