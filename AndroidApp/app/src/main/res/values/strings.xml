@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AccelerometerReader</string>
+    <string name="record">Record</string>
+    <string name="stop">Stop Recording</string>
+    <string name="upload">Upload</string>
+    <string name="title_activity_results">Results</string>
+</resources>
