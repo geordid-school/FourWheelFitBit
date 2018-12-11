@@ -19,7 +19,7 @@ namespace FourWheelFitbit.Models
                 new DataColumn("time",typeof(Double))
             });
 
-            foreach (string row in inputString.Split('\n'))
+            foreach (var row in inputString.Split('\n'))
             {
                 if (!string.IsNullOrEmpty(row))
                 {
@@ -27,7 +27,7 @@ namespace FourWheelFitbit.Models
                     int i = 0;
 
                     // Execute a loop over the columns.  
-                    foreach (string cell in row.Split(','))
+                    foreach (var cell in row.Split(','))
                     {
                         var doubleCell = Convert.ToDouble(cell);
                         wheelchairDataTable.Rows[wheelchairDataTable.Rows.Count - 1][i] = doubleCell;
